@@ -1,0 +1,16 @@
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\bin\Debug\TradeTracker.exe.config
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\bin\Debug\TradeTracker.exe
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\bin\Debug\TradeTracker.pdb
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\obj\Debug\TradeTracker.csproj.AssemblyReference.cache
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\obj\Debug\MainWindow.g.cs
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\obj\Debug\App.g.cs
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\obj\Debug\TradeTracker_MarkupCompile.cache
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\obj\Debug\TradeTracker_MarkupCompile.lref
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\obj\Debug\MainWindow.baml
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\obj\Debug\TradeTracker.g.resources
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\obj\Debug\TradeTracker.Properties.Resources.resources
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\obj\Debug\TradeTracker.csproj.GenerateResource.cache
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\obj\Debug\TradeTracker.csproj.CoreCompileInputs.cache
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\obj\Debug\TradeTracker.exe
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\obj\Debug\TradeTracker.pdb
+C:\Users\anas\source\repos\TradeTracker\TradeTracker\obj\Debug\GeneratedInternalTypeHelper.g.cs
