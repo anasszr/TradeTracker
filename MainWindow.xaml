@@ -149,7 +149,14 @@
                         <StackPanel Grid.Column="9" Margin="5">
                             <Button Content="📁 Upload Media"
                 ToolTip="Attach screenshots"
-                Background="#4CAF50"/>
+                Background="#4CAF50"  Click="UploadButton_Click"/>
+                            <Image
+  Source="{Binding NewTrade.Media}"
+  MaxWidth="120"
+  MaxHeight="80"
+  Stretch="Uniform"
+  Margin="0,4,0,0"/>
+
                         </StackPanel>
 
                         <!-- Submit -->
@@ -178,6 +185,7 @@
                     <DataGridTextColumn Header="Date"       Binding="{Binding DateDisplay}"   Width="70*" />
                     <DataGridTextColumn Header="Entry Price" Binding="{Binding EntryPrice}"    Width="70*" />
                     <DataGridTextColumn Header="Close Price" Binding="{Binding ClosePrice}"    Width="70*" />
+                    <DataGridTextColumn Header="Units"   Binding="{Binding Contracts}"       Width="70*" />
                     <DataGridTextColumn Header="Short/Long" Binding="{Binding ShortLong}"     Width="70*" />
                     <DataGridTextColumn Header="Win/Loss"   Binding="{Binding WinLoss}"       Width="70*" />
                     <DataGridTextColumn Header="Value"      Binding="{Binding Value, StringFormat=C}" Width="70*" />

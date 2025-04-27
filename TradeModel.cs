@@ -16,6 +16,13 @@ namespace TradeTracker.Models
         private decimal _value;
         private string _note;
         private decimal _contracts = 1m;   // default to 1
+        private string _media;
+        public string Media
+        {
+            get => _media;
+            set { _media = value; OnPropertyChanged(); }
+        }
+
         public decimal Contracts
         {
             get => _contracts;
@@ -136,7 +143,7 @@ namespace TradeTracker.Models
                 else
                 {
                     WinLoss = "Loss";
-                    Value = (EntryPrice - ClosePrice) * multiplier;
+                    Value = (EntryPrice - ClosePrice) * multiplier * Contracts;
                 }
             }
             else if (ShortLong == "Short")
@@ -144,12 +151,12 @@ namespace TradeTracker.Models
                 if (EntryPrice > ClosePrice)
                 {
                     WinLoss = "Win";
-                    Value = (EntryPrice - ClosePrice) * multiplier;
+                    Value = (EntryPrice - ClosePrice) * multiplier * Contracts;
                 }
                 else
                 {
                     WinLoss = "Loss";
-                    Value = (ClosePrice - EntryPrice) * multiplier;
+                    Value = (ClosePrice - EntryPrice) * multiplier * Contracts;
                 }
             }
             else
