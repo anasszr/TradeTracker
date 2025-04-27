@@ -86,6 +86,7 @@
           Text="{Binding NewTrade.EntryPrice,
                          Mode=TwoWay,
                          UpdateSourceTrigger=PropertyChanged}"
+                                 PreviewTextInput="OnPreviewTextInput"
           Width="100"/>
                         </StackPanel>
 
@@ -96,6 +97,7 @@
           Text="{Binding NewTrade.ClosePrice,
                          Mode=TwoWay,
                          UpdateSourceTrigger=PropertyChanged}"
+                                 PreviewTextInput="OnPreviewTextInput"
           Width="100"/>
                         </StackPanel>
 
@@ -116,6 +118,7 @@
           Text="{Binding NewTrade.Contracts,
                          Mode=TwoWay,
                          UpdateSourceTrigger=PropertyChanged}"
+                                 PreviewTextInput="OnPreviewTextInput"
           Width="80"/>
                         </StackPanel>
 

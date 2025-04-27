@@ -16,6 +16,11 @@ namespace TradeTracker
             InitializeComponent();
             DataContext = new TradeModelView(); // Set ViewModel
         }
+        private void OnPreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            // Allow only numeric input (digits, and one decimal point)
+            e.Handled = !System.Text.RegularExpressions.Regex.IsMatch(e.Text, @"^[0-9\.]+$");
+        }
         public static BitmapImage LoadImage(string path)
         {
             if (string.IsNullOrEmpty(path) || !File.Exists(path))
