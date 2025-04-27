@@ -50,7 +50,14 @@ namespace TradeTracker.ViewModels
         {
            
             SymbolOptions = new ObservableCollection<string> { "ES11", "USDGBP", "JPYUSD" };
-            ShortLongptions = new ObservableCollection<string> { "Short", "Long" };
+            // first element is blank
+            ShortLongptions = new ObservableCollection<string>
+{
+    "-- select --",  // “no selection”
+    "Short",
+    "Long"
+};
+
             WinLossOptions = new ObservableCollection<string> { "Win", "Loss" };
             Trades = new ObservableCollection<TradeModel>();
             NewTrade = new TradeModel();
@@ -64,6 +71,7 @@ namespace TradeTracker.ViewModels
 
         private void ExecuteClick()
         {
+
             Trades.Add(new TradeModel
             {
                 Id = Trades.Count + 1,
@@ -71,9 +79,10 @@ namespace TradeTracker.ViewModels
                 Date = NewTrade.Date,
                 EntryPrice = NewTrade.EntryPrice,
                 ClosePrice = NewTrade.ClosePrice,
-                ShortLong = NewTrade.ShortLong,
+                ShortLong = "-- select --",
                 WinLoss = NewTrade.WinLoss,
                 Value = NewTrade.Value,
+                Contracts = NewTrade.Contracts,
                 Note = NewTrade.Note
             });
             ResetNewTrade();
@@ -84,10 +93,11 @@ namespace TradeTracker.ViewModels
             {
                 // Reset to defaults
                 Date = DateTime.Now, // Keep current date
+                Contracts = 1m,
                 Symbol = "",
                 EntryPrice = 0,
                 ClosePrice = 0,
-                ShortLong = "",
+                ShortLong = "-- select --",
                 WinLoss = "",
                 Value = 0,
                 Note = ""

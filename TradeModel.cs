@@ -15,8 +15,18 @@ namespace TradeTracker.Models
         private string _winLoss;
         private decimal _value;
         private string _note;
-        
-       
+        private decimal _contracts = 1m;   // default to 1
+        public decimal Contracts
+        {
+            get => _contracts;
+            set
+            {
+                if (_contracts == value) return;
+                _contracts = value;
+                OnPropertyChanged();
+                Recalculate();
+            }
+        }
 
         public int Id
         {
@@ -30,42 +40,6 @@ namespace TradeTracker.Models
             set { _symbol = value; OnPropertyChanged(); }
         }
 
-      
-
-        public decimal EntryPrice
-        {
-            get => _entryPrice;
-            set { _entryPrice = value; OnPropertyChanged(); }
-        }
-
-        public decimal ClosePrice
-        {
-            get => _closePrice;
-            set { _closePrice = value; OnPropertyChanged(); }
-        }
-
-        public string ShortLong
-        {
-            get => _shortLong;
-            set { _shortLong = value; OnPropertyChanged(); }
-        }
-        public string WinLoss
-        {
-            get => _winLoss;
-            set { _winLoss = value; OnPropertyChanged(); }
-        }
-
-        public decimal Value
-        {
-            get => _value;
-            set { _value = value; OnPropertyChanged(); }
-        }
-
-        public string Note
-        {
-            get => _note;
-            set { _note = value; OnPropertyChanged(); }
-        }
         public DateTime Date
         {
             get => _date;
@@ -73,17 +47,121 @@ namespace TradeTracker.Models
             {
                 _date = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(DateDisplay)); // Add this line
+                OnPropertyChanged(nameof(DateDisplay));
             }
         }
 
-        // Add this property for formatted display
         public string DateDisplay => Date.ToString("yyyy-MM-dd");
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        public decimal EntryPrice
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            get => _entryPrice;
+            set
+            {
+                if (_entryPrice == value) return;
+                _entryPrice = value;
+                OnPropertyChanged();
+                Recalculate();
+            }
         }
+
+        public decimal ClosePrice
+        {
+            get => _closePrice;
+            set
+            {
+                if (_closePrice == value) return;
+                _closePrice = value;
+                OnPropertyChanged();
+                Recalculate();
+            }
+        }
+
+        public string ShortLong
+        {
+            get => _shortLong;
+            set
+            {
+                if (_shortLong == value) return;
+                _shortLong = value;
+                OnPropertyChanged();
+                Recalculate();
+            }
+        }
+
+        // Bind these directly; their setters are now private to prevent external overwrites
+        public string WinLoss
+        {
+            get => _winLoss;
+             set
+            {
+                _winLoss = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public decimal Value
+        {
+            get => _value;
+             set
+            {
+                _value = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Note
+        {
+            get => _note;
+            set { _note = value; OnPropertyChanged(); }
+        }
+
+        /// <summary>
+        /// Calculate Win/Loss and P&L in USD (points × $50 multiplier).
+        /// </summary>
+        private void Recalculate()
+        {
+           
+
+           
+            const decimal multiplier = 50m; // e-mini S&P-500
+
+            if (ShortLong == "Long")
+            {
+                if (EntryPrice < ClosePrice)
+                {
+                    WinLoss = "Win";
+                    Value = (ClosePrice - EntryPrice) * multiplier *Contracts;
+                }
+                else
+                {
+                    WinLoss = "Loss";
+                    Value = (EntryPrice - ClosePrice) * multiplier;
+                }
+            }
+            else if (ShortLong == "Short")
+            {
+                if (EntryPrice > ClosePrice)
+                {
+                    WinLoss = "Win";
+                    Value = (EntryPrice - ClosePrice) * multiplier;
+                }
+                else
+                {
+                    WinLoss = "Loss";
+                    Value = (ClosePrice - EntryPrice) * multiplier;
+                }
+            }
+            else
+            {
+                // if none selected yet
+                WinLoss = string.Empty;
+                Value = 0m;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
+            => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
 }

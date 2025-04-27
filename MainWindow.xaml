@@ -27,110 +27,189 @@
             </Grid.RowDefinitions>
 
             <!-- Input Section (Row 0) -->
+            <!-- Input Section (Row 0) -->
             <Viewbox>
-                <ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" Margin="10,0,-10,0">
+                <ScrollViewer Grid.Row="0"
+                HorizontalScrollBarVisibility="Auto"
+                VerticalScrollBarVisibility="Disabled"
+                Margin="10,0,-10,0">
                     <Grid Margin="10">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <!-- Pair -->
+                            <ColumnDefinition Width="*" />
+                            <!-- Date -->
+                            <ColumnDefinition Width="*" />
+                            <!-- Entry -->
+                            <ColumnDefinition Width="*" />
+                            <!-- Close -->
+                            <ColumnDefinition Width="*" />
+                            <!-- Short/Long -->
+                            <ColumnDefinition Width="*" />
+                            <!-- Contracts -->
+                            <ColumnDefinition Width="*" />
+                            <!-- Win/Loss -->
+                            <ColumnDefinition Width="*" />
+                            <!-- Value -->
+                            <ColumnDefinition Width="*" />
+                            <!-- Note -->
+                            <ColumnDefinition Width="*" />
+                            <!-- Media -->
+                            <ColumnDefinition Width="*" />
+                            <!-- Submit -->
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="0" Margin="5" VerticalAlignment="Center">
-                            <Grid Margin="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
+                        <!-- Pair -->
+                        <StackPanel Grid.Column="0" Margin="5">
+                            <TextBlock Text="Trade Pair:"/>
+                            <ComboBox
+          ItemsSource="{Binding SymbolOptions}"
+          SelectedItem="{Binding NewTrade.Symbol,
+                                 Mode=TwoWay,
+                                 UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
 
-                                <!-- Pair -->
-                                <StackPanel Grid.Column="0" Margin="5" VerticalAlignment="Center">
-                                    <TextBlock Text="Trade Pair:" VerticalAlignment="Center"/>
-                                    <ComboBox Name="mycombobox" ItemsSource="{Binding SymbolOptions}" SelectedItem="{Binding NewTrade.Symbol}" DisplayMemberPath="." />
-                                </StackPanel>
+                        <!-- Date -->
+                        <StackPanel Grid.Column="1" Margin="5">
+                            <TextBlock Text="Select Date"/>
+                            <DatePicker
+          SelectedDate="{Binding NewTrade.Date,
+                                 Mode=TwoWay,
+                                 UpdateSourceTrigger=PropertyChanged}"
+          Width="120"/>
+                        </StackPanel>
 
-                                <!-- Date -->
-                                <StackPanel Grid.Column="1" Margin="5" VerticalAlignment="Center">
-                                    <TextBlock Text="Select Date" />
-                                    <DatePicker Name="myDatePicker" SelectedDate="{Binding NewTrade.Date, Mode=TwoWay}" DisplayDate="{Binding NewTrade.Date}" Width="120"/>
-                                </StackPanel>
+                        <!-- Entry Price -->
+                        <StackPanel Grid.Column="2" Margin="5">
+                            <TextBlock Text="Entry Price:"/>
+                            <TextBox
+          Text="{Binding NewTrade.EntryPrice,
+                         Mode=TwoWay,
+                         UpdateSourceTrigger=PropertyChanged}"
+          Width="100"/>
+                        </StackPanel>
 
-                                <!-- Entry Price -->
-                                <StackPanel Grid.Column="2" VerticalAlignment="Center">
-                                    <TextBlock Text="Entry Price:" />
-                                    <TextBox   Name="entry" Width="100" Margin="2" Text="{Binding NewTrade.EntryPrice}"  />
-                                </StackPanel>
+                        <!-- Close Price -->
+                        <StackPanel Grid.Column="3" Margin="5">
+                            <TextBlock Text="Close Price:"/>
+                            <TextBox
+          Text="{Binding NewTrade.ClosePrice,
+                         Mode=TwoWay,
+                         UpdateSourceTrigger=PropertyChanged}"
+          Width="100"/>
+                        </StackPanel>
 
-                                <!-- Close Price -->
-                                <StackPanel Grid.Column="3" VerticalAlignment="Center">
-                                    <TextBlock Text="Close Price:" />
-                                    <TextBox  Name="close" Width="100" Margin="2" Text="{Binding NewTrade.ClosePrice}"   />
-                                </StackPanel>
+                        <!-- Short/Long -->
+                        <StackPanel Grid.Column="4" Margin="5">
+                            <TextBlock Text="Short/Long:"/>
+                            <ComboBox
+  ItemsSource="{Binding ShortLongptions}"
+  SelectedItem="{Binding NewTrade.ShortLong,
+                         Mode=TwoWay,
+                         UpdateSourceTrigger=PropertyChanged}" SelectedIndex="1" /> 
+                        </StackPanel>
 
-                                <!-- Short/Long -->
-                                <StackPanel Grid.Column="4" VerticalAlignment="Center">
-                                    <TextBlock Text="Short/Long:" />
-                                    <ComboBox Name="myShortLongcombobox" ItemsSource="{Binding ShortLongptions}" SelectedItem="{Binding NewTrade.ShortLong}" DisplayMemberPath="." />
-                                </StackPanel>
-                                <!-- Win/Loss -->
-                                <StackPanel Grid.Column="5" VerticalAlignment="Center">
-                                    <TextBlock Text="Win/Loss:" />
-                                    <ComboBox Name="myWinLosscombobox" ItemsSource="{Binding WinLossOptions}" SelectedItem="{Binding NewTrade.WinLoss}" DisplayMemberPath="." />
-                                </StackPanel>
+                        <!-- Contracts -->
+                        <StackPanel Grid.Column="5" Margin="5">
+                            <TextBlock Text="Contracts:"/>
+                            <TextBox
+          Text="{Binding NewTrade.Contracts,
+                         Mode=TwoWay,
+                         UpdateSourceTrigger=PropertyChanged}"
+          Width="80"/>
+                        </StackPanel>
 
-                                
-                                
+                        <!-- Win/Loss -->
+                        <StackPanel Grid.Column="6" Margin="5">
+                            <TextBlock Text="Win/Loss:"/>
+                            <TextBlock Text="{Binding NewTrade.WinLoss}"/>
+                        </StackPanel>
 
-                                <!-- Value -->
-                                <StackPanel Grid.Column="6" VerticalAlignment="Center">
-                                    <TextBlock Text="Value:" />
-                                    <TextBox  Name="value" Width="100" Margin="2" Text="{Binding NewTrade.Value}"  />
-                                </StackPanel>
+                        <!-- Value -->
+                        <StackPanel Grid.Column="7" Margin="5">
+                            <TextBlock Text="Value:"/>
+                            <TextBlock Text="{Binding NewTrade.Value,
+                               StringFormat=C}"/>
+                        </StackPanel>
 
-                                <!-- Notes -->
-                                <StackPanel Grid.Column="7" Margin="5">
-                                    <TextBlock Text="Notes Media" />
-                                    <TextBox Name="myNoteTextBox" Width="220" Height="80" AcceptsReturn="True" TextWrapping="Wrap" Text="{Binding NewTrade.Note}"/>
-                                    
-                                </StackPanel>
-                                <StackPanel Grid.Column="8" Margin="5" VerticalAlignment="Center">
-                                   
-                                    <Button Content="📁 Upload Media" Margin="2,8,2,2" 
-                                            ToolTip="Attach screenshots or documents" Background="#4CAF50"/>
-                                </StackPanel>
+                        <!-- Notes -->
+                        <StackPanel Grid.Column="8" Margin="5">
+                            <TextBlock Text="Notes"/>
+                            <TextBox
+          Text="{Binding NewTrade.Note,
+                         Mode=TwoWay,
+                         UpdateSourceTrigger=PropertyChanged}"
+          Width="220"
+          Height="80"
+          AcceptsReturn="True"
+          TextWrapping="Wrap"/>
+                        </StackPanel>
 
-                                <!-- Submit Section -->
-                                <StackPanel Grid.Column="9" Margin="5" VerticalAlignment="Center">
-                                    <Button Content="Submit" Width="80" Padding="5" VerticalAlignment="Center" Height="30"  Command="{Binding ClickCommand}" />
-                                </StackPanel>
-                            </Grid>
+                        <!-- Media -->
+                        <StackPanel Grid.Column="9" Margin="5">
+                            <Button Content="📁 Upload Media"
+                ToolTip="Attach screenshots"
+                Background="#4CAF50"/>
+                        </StackPanel>
+
+                        <!-- Submit -->
+                        <StackPanel Grid.Column="10" Margin="5">
+                            <Button Content="Submit"
+                Width="80"
+                Height="30"
+                Command="{Binding ClickCommand}"/>
                         </StackPanel>
                     </Grid>
                 </ScrollViewer>
             </Viewbox>
 
+
             <!-- DataGrid (Row 1) -->
-            <DataGrid ItemsSource="{Binding Trades}" Grid.Row="1" x:Name="SimpleDataGrid" AutoGenerateColumns="False" Margin="10" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <DataGrid ItemsSource="{Binding Trades}"
+          Grid.Row="1"
+          x:Name="SimpleDataGrid"
+          AutoGenerateColumns="False"
+          Margin="10"
+          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Binding="{Binding Id, Mode=OneWay}" Width="50*" />
-                    <DataGridTextColumn Header="Symbol" Binding="{Binding Symbol, Mode=OneWay}" Width="70*" />
-                    <DataGridTextColumn Header="Date" Binding="{Binding DateDisplay, Mode=OneWay}" Width="70*" />
-                    <DataGridTextColumn Header="Entry Price" Binding="{Binding EntryPrice, Mode=OneWay}" Width="70*" />
-                    <DataGridTextColumn Header="Close Price" Binding="{Binding ClosePrice, Mode=OneWay}" Width="70*" />
-                    <DataGridTextColumn Header="Short/Long" Binding="{Binding ShortLong, Mode=OneWay}" Width="70*" />
-                    <DataGridTextColumn Header="Win/Loss" Binding="{Binding WinLoss, Mode=OneWay}" Width="70*" />
-                    <DataGridTextColumn Header="Value" Binding="{Binding Value, Mode=OneWay}" Width="70*" />
-                    <DataGridTextColumn Header="Note" Binding="{Binding Note, Mode=OneWay}" Width="70*" />
-                    <DataGridTextColumn Header="Media" Binding="{Binding Media, Mode=OneWay}" Width="70*" />
-                    <DataGridTextColumn Header="Options" Binding="{Binding Options, Mode=OneWay}" Width="70*" />
+                    <!-- your other columns here… -->
+                    <DataGridTextColumn Header="ID"         Binding="{Binding Id}"            Width="50*" />
+                    <DataGridTextColumn Header="Symbol"     Binding="{Binding Symbol}"        Width="70*" />
+                    <DataGridTextColumn Header="Date"       Binding="{Binding DateDisplay}"   Width="70*" />
+                    <DataGridTextColumn Header="Entry Price" Binding="{Binding EntryPrice}"    Width="70*" />
+                    <DataGridTextColumn Header="Close Price" Binding="{Binding ClosePrice}"    Width="70*" />
+                    <DataGridTextColumn Header="Short/Long" Binding="{Binding ShortLong}"     Width="70*" />
+                    <DataGridTextColumn Header="Win/Loss"   Binding="{Binding WinLoss}"       Width="70*" />
+                    <DataGridTextColumn Header="Value"      Binding="{Binding Value, StringFormat=C}" Width="70*" />
+                    <DataGridTextColumn Header="Note"       Binding="{Binding Note}"          Width="70*" />
+
+                    <!-- Options column with Edit + Delete buttons -->
+                    <DataGridTemplateColumn Header="Options" Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                      HorizontalAlignment="Center">
+                                    <!-- Edit -->
+                                    <Button Content="Edit"
+                    Margin="0,0,4,0"
+                    Padding="2,0"
+                    Command="{Binding DataContext.EditCommand,
+                                      RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                    CommandParameter="{Binding}" />
+
+                                    <!-- Delete -->
+                                    <Button Content="Delete"
+                    Padding="2,0"
+                    Command="{Binding DataContext.DeleteCommand,
+                                      RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                    CommandParameter="{Binding}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+
 
             <!-- Action Buttons (Row 2) -->
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="10">
